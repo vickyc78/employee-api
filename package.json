@@ -7,6 +7,11 @@
     "test": "nyc mocha",
     "start": "node index.js"
   },
+  "engines": {
+    "node": "12.18.0",
+    "npm":"6.14.4",
+    "yarn": "1.x"
+  },
   "author": "vicky",
   "license": "ISC",
   "dependencies": {
