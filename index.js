@@ -10,7 +10,7 @@ let app = express();
 
 var env = require("./config/env/development");
 
-const db = require("../mysql-api/models");
+const db = require("./models");
 db.sequelize.sync();
 
 app.use(cors());
