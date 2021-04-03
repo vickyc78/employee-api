@@ -15,6 +15,10 @@ const sequelize = new Sequelize(
     operatorsAliases: false,
     ssl: {
       rejectUnauthorized: false
+    },
+    ssl: true,
+    dialectOptions: {
+      ssl: true
     }
   }
 );
