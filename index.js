@@ -17,8 +17,8 @@ app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-console.log("inside index.js");
 let port = process.env.PORT || env.port;
+console.log("inside index.js", port);
 app.listen(port, function() {
   console.log(`App listing on port ${port} !`);
 });
