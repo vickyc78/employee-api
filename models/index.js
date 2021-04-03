@@ -12,7 +12,10 @@ const sequelize = new Sequelize(
   {
     host: "ec2-54-235-108-217.compute-1.amazonaws.com",
     dialect: "postgres",
-    operatorsAliases: false
+    operatorsAliases: false,
+    ssl: {
+      rejectUnauthorized: false
+    }
   }
 );
 
