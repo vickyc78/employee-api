@@ -1,6 +1,7 @@
 const db = require("../models");
 const User = db.user;
 const Salary = db.salary;
+const Department = db.department;
 const Op = db.Sequelize.Op;
 
 exports.createEmployee = async (req, res) => {
@@ -46,6 +47,25 @@ exports.getAllEmployee = async (req, res) => {
   try {
     let allEmployeeData = await User.findAll();
     if (allEmployeeData) {
+      res.status(200).json(allEmployeeData);
+    } else {
+      res.status(404).send("No Employee Found");
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+exports.getAllEmployeeFilter = async (req, res) => {
+  try {
+    let allEmployeeData = await User.findAll({
+      where: {
+        joiningDate: {
+          [Op.between]: [req.body.fromDate, req.body.toDate]
+        }
+      }
+    });
+    if (allEmployeeData.length) {
       res.status(200).json(allEmployeeData);
     } else {
       res.status(404).send("No Employee Found");

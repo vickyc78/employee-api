@@ -8,10 +8,13 @@ let router = express.Router();
 
 let app = express();
 
+require("dotenv").config();
+
 var env = require("./config/env/development");
 
 const db = require("./models");
-db.sequelize.sync();
+// db.sequelize.sync();
+db.sequelize.sync({ force: true });
 
 app.use(cors());
 
@@ -24,16 +27,22 @@ app.listen(port, function() {
 });
 const UserController = require("./controllers/UserController");
 const SalaryController = require("./controllers/SalaryController");
+const DepartmentController = require("./controllers/DepartmentController");
 
 router.post("/create", UserController.createEmployee);
 router.get("/:employeeId", UserController.getOneEmployeeDetail);
 router.post("/getAll", UserController.getAllEmployee);
+router.post("/getAllEmployeeFilter", UserController.getAllEmployeeFilter);
 
 router.post("/createSalary", SalaryController.createSalary);
 router.post("/getOneSalary", SalaryController.getOneEmployeeSalary);
 
+router.post("/saveDepartment", DepartmentController.save);
+router.post("/getOneDepartment", DepartmentController.getOneDepartment);
+
 app.use("/User", router);
 app.use("/Salary", router);
+app.use("/Department", router);
 
 app.use(function(req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
